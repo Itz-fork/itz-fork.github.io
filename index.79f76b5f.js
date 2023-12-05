@@ -1,12 +1,9 @@
 // Author: Itz-fork
-
-
 //  Pre-defined variables
-var intWidth = window.innerWidth
-var intHeight = window.innerHeight
+var intWidth = window.innerWidth;
+var intHeight = window.innerHeight;
 const container = document.getElementById("sqbg");
 const cursor = document.getElementById("cursor");
-
 const size = 100;
 let columns = 0, rows = 0;
 const codes = [
@@ -46,11 +43,9 @@ const codes = [
     "struct Code",
     "interface Life"
 ];
-
-
 // Background grid
 function AddSqrs(sq) {
-    while (sq > 0) {
+    while(sq > 0){
         let sqrel = document.createElement("div");
         sqrel.classList.add("sqr_block");
         sqrel.innerText = codes[Math.floor(Math.random() * codes.length)];
@@ -58,7 +53,7 @@ function AddSqrs(sq) {
         sq--;
     }
 }
-const CalcGrid = () => {
+const CalcGrid = ()=>{
     container.innerHTML = "";
     columns = Math.floor(window.innerWidth / size);
     rows = Math.floor(window.innerHeight / size);
@@ -67,18 +62,14 @@ const CalcGrid = () => {
     AddSqrs(columns * rows);
 };
 CalcGrid();
-
 // Generate grid on resize
-window.onresize = () => {
-    let curWidth = window.innerWidth
-    let curHeight = window.innerHeight
-    if (curWidth != intWidth || curHeight != intHeight) {
-        CalcGrid()
-    }
+window.onresize = ()=>{
+    let curWidth = window.innerWidth;
+    let curHeight = window.innerHeight;
+    if (curWidth != intWidth || curHeight != intHeight) CalcGrid();
 };
-
 // Mouse move effect
-window.onmousemove = (ev) => {
+window.onmousemove = (ev)=>{
     let position = Math.floor(ev.x / 100) + Math.floor(ev.y / 100) * columns;
     let el = container.children[position];
     try {
@@ -97,5 +88,7 @@ window.onmousemove = (ev) => {
                 "ease-out"
             ]
         }, 2000);
-    } catch (e) { }
+    } catch (e) {}
 };
+
+//# sourceMappingURL=index.79f76b5f.js.map

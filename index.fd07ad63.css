@@ -1,0 +1,50 @@
+a[data-linker] {
+  color: #9bf6ff;
+  -webkit-text-decoration: underline dotted #e5989b;
+  text-decoration: underline dotted #e5989b;
+}
+
+span[id="icon-py"] {
+  content: url("https://api.iconify.design/logos/python.svg");
+}
+
+span[id="icon-js"] {
+  content: url("https://api.iconify.design/logos/javascript.svg");
+}
+
+span[id="icon-ts"] {
+  content: url("https://api.iconify.design/logos/typescript-icon.svg");
+}
+
+span[id="icon-rs"] {
+  content: url("https://api.iconify.design/logos/rust.svg");
+  filter: invert(34%) sepia(58%) saturate(4679%) hue-rotate(8deg) brightness(102%) contrast(103%);
+}
+
+span[id="icon-sh"] {
+  content: url("https://api.iconify.design/logos/bash-icon.svg");
+}
+
+span[id="icon-dart"] {
+  content: url("https://api.iconify.design/logos/dart.svg");
+}
+
+span[id="icon-vlang"] {
+  content: url("https://api.iconify.design/logos/vlang.svg");
+}
+
+span[id="icon-gh"] {
+  content: url("https://api.iconify.design/logos/github-icon.svg");
+  filter: invert(99%) sepia(0%) saturate(122%) hue-rotate(35deg) brightness(112%) contrast();
+}
+
+span[id="icon-email"] {
+  content: url("https://api.iconify.design/logos/google-gmail.svg");
+}
+
+span[id="icon-tele"] {
+  content: url("https://api.iconify.design/logos/telegram.svg");
+  transform: scale(1.3);
+}
+
+/*# sourceMappingURL=index.fd07ad63.css.map */
