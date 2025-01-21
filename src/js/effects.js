@@ -54,12 +54,15 @@ function AddSqrs(sq) {
     while (sq > 0) {
         let sqrel = document.createElement("div");
         sqrel.classList.add("sqr_block");
-        sqrel.innerText = codes[Math.floor(Math.random() * codes.length)];
+        sqrel.innerText = codes[~~(Math.random() * codes.length)];
         fragment.appendChild(sqrel);
         sq--;
     }
     container.appendChild(fragment);
 }
+
+// Grid children
+let cchildren = container.children;
 
 // Calculate grid
 const CalcGrid = () => {
@@ -69,6 +72,8 @@ const CalcGrid = () => {
     container.style.setProperty("--columns", columns);
     container.style.setProperty("--rows", rows);
     AddSqrs(columns * rows);
+    // Update grid children
+    cchildren = container.children;
 };
 CalcGrid();
 
@@ -83,8 +88,9 @@ window.onresize = () => {
 
 // Mouse move effect
 window.onmousemove = (ev) => {
-    const position = Math.floor(ev.x / 100) + Math.floor(ev.y / 100) * columns;
-    let el = container.children[position];
+    const position = Math.floor(ev.x / size) + Math.floor(ev.y / size) * columns;
+
+    let el = cchildren[position];
     try {
         el.animate({
             opacity: [
