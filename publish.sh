@@ -12,6 +12,7 @@ GHP_BRANCH="gh-pages"
 UPSTREAM_NM="ghupstream"
 REPO_URL="https://github.com/Itz-fork/itz-fork.github.io.git"
 PRESERVE_GIT_HISTORY=true
+KEEP_DIST=false
 BUILD_START=$(date +%Y-%m-%d-%H-%M-%S)
 COMMIT_MSG="build ${BUILD_START}"
 FLAGS=""
@@ -52,6 +53,10 @@ while [[ $# -gt 0 ]]; do
             PRESERVE_GIT_HISTORY=false
             shift
             ;;
+        -ydist|--keep-dist)
+            KEEP_DIST=true
+            shift
+            ;;
         -h|--help)
             echo -e "${YELLOW}
 Usage:
@@ -63,6 +68,7 @@ Arguments:
     -m|--msg - Commit messsage. Defaults to 'build <timestamp>'
     -b|--branch - Branch name. Defaults to 'gh-pages'
     -nk|--no-keep - Do not preserve git history; start with a fresh branch. Not recommended
+    -ydist|--keep-dist - Keep dist directory after publishing. Defaults to false
     -h|--help - Shows this message
 ${RESET}"
             exit 0
@@ -143,7 +149,9 @@ restore_or_reset_branch() {
         rm -rf .git || error_sh "Failed to remove temporary .git"
         cp -r "$PROJECT_ROOT/.git" . || error_sh "Failed to restore .git from project root"
         
-        # Ensure we're on the correct branch, creating if needed
+        # Reset to clean state and ensure we're on the correct branch
+        git reset --hard HEAD || error_sh "Failed to reset git state"
+        git clean -fd || error_sh "Failed to clean working directory"
         git checkout "$GHP_BRANCH" &> /dev/null || {
             git checkout -b "$GHP_BRANCH" || error_sh "Failed to create branch $GHP_BRANCH"
         }
@@ -159,10 +167,21 @@ stage_build_artifacts() {
     cd "$TMPDIR" || error_sh "Failed to navigate to temporary directory"
     
     # Remove all existing content except .git
-    find . -mindepth 1 ! -name '.git' -delete || error_sh "Failed to clean repository"
+    shopt -s dotglob
+    for item in *; do
+        if [[ "$item" != ".git" ]]; then
+            rm -rf "$item" || error_sh "Failed to remove $item"
+        fi
+    done
+    shopt -u dotglob
     
     # Copy build artifacts
     cp -r "$PROJECT_ROOT/dist"/* . || error_sh "Failed to copy build artifacts"
+    
+    # Clean up dist from project root unless keeping it
+    if [ "$KEEP_DIST" = false ]; then
+        rm -rf "$PROJECT_ROOT/dist" || warn_sh "Failed to clean dist directory"
+    fi
 }
 
 commit_if_changed() {
