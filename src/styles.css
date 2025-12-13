@@ -522,6 +522,10 @@ button.cta {
   .nav button {
     padding: 0.4rem 0.8rem;
     font-size: 1.2rem;
+    letter-spacing: 0.02em;
+  }
+  .nav button.active {
+    letter-spacing: 0.04em;
   }
 
   .sidebar {
