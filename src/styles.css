@@ -13,6 +13,7 @@
   --mono: 'JetBrains Mono', monospace;
   --sans: 'Space Grotesk', system-ui, sans-serif;
 
+  /* Future proofing */
   --z-base: 1;
   --z-nav: 10;
   --z-overlay: 20;
@@ -39,7 +40,7 @@ body {
   font-family: var(--sans);
 }
 
-/* Custom cursor — integrated with design system */
+/* Custom cursor */
 body,
 a,
 button,
@@ -152,25 +153,50 @@ textarea {
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  background: none;
+
+  background: transparent;
   border: 0.1rem solid var(--border);
   padding: 0.8rem 1.2rem;
   border-radius: 0.8rem;
+
   color: var(--muted);
   font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+
   cursor: pointer;
+
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease;
 }
 
 .nav button svg {
   width: 1.6rem;
   height: 1.6rem;
   stroke: currentColor;
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
+}
+
+.nav button:hover {
+  background-color: rgba(255, 255, 255, 0.03);
 }
 
 .nav button.active {
   color: var(--accent);
   border-color: var(--accent);
+  background-color: rgba(88, 166, 255, 0.08);
+
+  font-weight: 700;
+  letter-spacing: 0.1em;
 }
+
+.nav button.active svg {
+  opacity: 1;
+}
+
 
 /* Footer */
 .footer {
@@ -193,7 +219,7 @@ textarea {
   }
 }
 
-/* Mobile footer behaves like a normal human footer */
+/* Mobile footer behaves like a normal footer */
 @media only screen and (max-device-width:768px) {
   .footer {
     position: static;
@@ -536,23 +562,24 @@ button.cta {
 
   /* Viewport framing — responsive but bounded */
   body {
-    padding-block: clamp(16vh, 25vh, 28vh);   /* top & bottom */
-    padding-inline: clamp(16vw, 25vw, 30vw); /* left & right */
+    padding-block: clamp(16vh, 25vh, 28vh);
+    /* top & bottom */
+    padding-inline: clamp(16vw, 25vw, 30vw);
+    /* left & right */
 
     background:
-      linear-gradient(
-        90deg,
+      linear-gradient(90deg,
         rgba(11, 15, 18, 0.985),
         var(--bg),
-        rgba(11, 15, 18, 0.985)
-      );
+        rgba(11, 15, 18, 0.985));
   }
 
   /* App occupies the framed middle */
   .app {
     width: 100%;
     height: 50vh;
-    min-height: 0; /* override old 100vh */
+    min-height: 0;
+    /* override old 100vh */
 
     background: var(--bg);
     border-radius: 1.6rem;
