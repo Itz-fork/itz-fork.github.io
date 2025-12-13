@@ -40,6 +40,55 @@ body {
   font-family: var(--sans);
 }
 
+/* Custom cursor — integrated with design system */
+
+body,
+a,
+button,
+input,
+textarea {
+  cursor: none !important;
+}
+
+.custom-cursor {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  
+  background: var(--accent);
+  box-shadow:
+    0 0 0 6px rgba(88, 166, 255, 0.12);
+
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+
+  transform: translate(-50%, -50%);
+  opacity: 0.85;
+
+  transition:
+    transform 0.12s ease-out,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.custom-cursor.hover {
+  background: transparent;
+
+  width: 28px;
+  height: 28px;
+
+  box-shadow:
+    0 0 0 1px var(--accent),
+    0 0 0 6px rgba(88, 166, 255, 0.15);
+}
+
+.custom-cursor.hide {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.7);
+}
+
+
 /* Keyboard users deserve love */
 :focus-visible {
   outline: 0.2rem solid var(--accent);
@@ -351,12 +400,18 @@ textarea {
   border-radius: 0.6rem;
   color: var(--text);
   font-family: inherit;
+  caret-color: transparent !important;
 }
 
 textarea {
   resize: none;
   overflow: hidden;
   min-height: 6.4rem;
+}
+
+input:focus,
+textarea:focus {
+  cursor: none !important;
 }
 
 button.cta {

@@ -34,6 +34,30 @@ buttons.forEach(btn => {
   });
 });
 
+// Cursor behavior (desktop only)
+document.addEventListener('DOMContentLoaded', () => {
+  const cursor = document.querySelector('.custom-cursor');
+  if (!cursor) return;
+
+  document.addEventListener('mousemove', (e) => {
+    if (!isDesktop()) {
+      cursor.classList.add('hide');
+      return;
+    }
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
+
+  document.body.addEventListener('mouseleave', () => cursor.classList.add('hide'));
+  document.body.addEventListener('mouseenter', () => cursor.classList.remove('hide'));
+
+  const interactiveElements = document.querySelectorAll('a, button, input[type="submit"], [data-cursor-hover]');
+  interactiveElements.forEach(el => {
+    el.addEventListener('mouseenter', () => { if (isDesktop()) cursor.classList.add('hover'); });
+    el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+  });
+});
+
 // Fake terminal boot sequence (pure vibes)
 const term = document.getElementById('term');
 const terminalLines = [
