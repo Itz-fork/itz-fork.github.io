@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>Hirusha — Backend & Automation</title>
+
+    <!-- Favicons -->
+    <link rel="icon" href="content/favicons/favicon.ico" sizes="any">
+    <link rel="icon" href="content/favicons/favicon.svg" type="image/svg+xml">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap"
+        rel="stylesheet">
+
+
+    <!-- Main styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- Sidebar / Navigation -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="avatar" aria-hidden="true">
+                    <img src="content/avatar.png" alt="H">
+                    <!-- <span class="fallback">H</span> -->
+                </div>
+                <div>
+                    <div class="title">Hirusha Himath</div>
+                    <div class="subtitle">Backend · Automation</div>
+                </div>
+            </div>
+
+            <nav class="nav" aria-label="Primary navigation">
+                <button class="active" data-target="terminal" aria-current="page">
+                    <!-- terminal -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" aria-hidden="true">
+                        <path d="M4 17l6-6-6-6M12 19h8" />
+                    </svg>
+                    Terminal
+                </button>
+
+                <button data-target="skills">
+                    <!-- chip -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" aria-hidden="true">
+                        <rect x="4" y="4" width="16" height="16" rx="2" />
+                        <path d="M9 9h6v6H9z" />
+                    </svg>
+                    Skills
+                </button>
+
+                <button data-target="projects">
+                    <!-- stack -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" aria-hidden="true">
+                        <path d="M12 2l9 5-9 5-9-5 9-5z" />
+                        <path d="M3 12l9 5 9-5" />
+                        <path d="M3 17l9 5 9-5" />
+                    </svg>
+                    Projects
+                </button>
+
+                <button data-target="contact">
+                    <!-- send -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" aria-hidden="true">
+                        <path d="M22 2L11 13" />
+                        <path d="M22 2l-7 20-4-9-9-4z" />
+                    </svg>
+                    Ping me
+                </button>
+            </nav>
+        </aside>
+
+        <!-- Main content area -->
+        <main class="main" role="main">
+            <div class="islands">
+
+                <section id="terminal" class="island active" tabindex="-1">
+                    <div class="card terminal">
+                        <div class="term-head">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <div id="term" class="term-lines" aria-live="polite"></div>
+                    </div>
+                </section>
+
+                <section id="skills" class="island" tabindex="-1">
+                    <div class="card">
+                        <div class="section-title">Skills</div>
+
+                        <div class="skill-group">
+                            <div class="skill-label">Programming languages</div>
+                            <div class="badges">
+                                <span class="badge">Python</span>
+                                <span class="badge">JavaScript</span>
+                                <span class="badge">Deno</span>
+                                <span class="badge">Bash</span>
+                                <span class="badge">Rust</span>
+                                <span class="badge">Dart</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-group">
+                            <div class="skill-label">Backend development</div>
+                            <div class="badges">
+                                <span class="badge">FastAPI</span>
+                                <span class="badge">Flask</span>
+                                <span class="badge">Docker</span>
+                                <span class="badge">Node.js</span>
+                                <span class="badge">Async</span>
+                                <span class="badge">API design</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-group">
+                            <div class="skill-label">Frontend & UI</div>
+                            <div class="badges">
+                                <span class="badge">HTML/CSS</span>
+                                <span class="badge">Svelte</span>
+                                <span class="badge">SvelteKit</span>
+                                <span class="badge">Astro</span>
+                                <span class="badge">Tailwind</span>
+                                <span class="badge">Browser extensions</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-group">
+                            <div class="skill-label">DevOps & deployment</div>
+                            <div class="badges">
+                                <span class="badge">Linux</span>
+                                <span class="badge">Docker</span>
+                                <span class="badge">Nginx</span>
+                                <span class="badge">CI/CD</span>
+                                <span class="badge">VPS</span>
+                                <span class="badge">Monitoring</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-group">
+                            <div class="skill-label">Automation & scripting</div>
+                            <div class="badges">
+                                <span class="badge">Playwright</span>
+                                <span class="badge">Web scraping</span>
+                                <span class="badge">CLI tools</span>
+                                <span class="badge">Pipelines</span>
+                                <span class="badge">Bash</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-group">
+                            <div class="skill-label">Databases</div>
+                            <div class="badges">
+                                <span class="badge">PostgreSQL</span>
+                                <span class="badge">MongoDB</span>
+                                <span class="badge">Redis</span>
+                                <span class="badge">Schema design</span>
+                                <span class="badge">Indexing</span>
+                                <span class="badge">Data modeling</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+
+                <section id="projects" class="island" tabindex="-1">
+                    <div class="card">
+                        <div class="section-title">Selected systems</div>
+                        <div class="projects">
+                            <!-- Project 1 -->
+                            <div class="card project-card">
+                                <h4>Mega.nz Bot</h4>
+                                <p class="subtitle">A high-performance Telegram automation bot that handles file and
+                                    folder transfers through mega.nz platform. Optimized for low-resource environments,
+                                    and capable of handling large workloads.</p>
+                                <a href="https://github.com/Itz-fork/Mega.nz-Bot" class="see-more-btn" target="_blank"
+                                    rel="noopener" aria-label="View Mega.nz bot on GitHub">
+                                    Info ↗
+                                </a>
+                            </div>
+                            <!-- Project 2 -->
+                            <div class="card project-card">
+                                <h4>cw-gram.js</h4>
+                                <p class="subtitle">A lightweight serverless microservice running on Cloudflare workers,
+                                    enabling secure message form delivery through Telegram Bot API. Used as a backend
+                                    for contact forms.</p>
+                                <a href="https://github.com/Itz-fork/cw-gram.js" class="see-more-btn" target="_blank"
+                                    rel="noopener" aria-label="View cw-gram.js on GitHub">
+                                    Info ↗
+                                </a>
+                            </div>
+                            <!-- Project 3 -->
+                            <div class="card project-card">
+                                <h4>BetterPyroDocs</h4>
+                                <p class="subtitle">A custom-built documentation search engine combining scraping,
+                                    indexing an API layer, a web UI, and a Telegram bot. Designed to make Pyrogram
+                                    Library methods and raw functions easily searchable.</p>
+                                <a href="https://github.com/Itz-fork/BetterPyroDocs" class="see-more-btn"
+                                    target="_blank" rel="noopener" aria-label="View BetterPyroDocs on GitHub">
+                                    Info ↗
+                                </a>
+                            </div>
+                        </div>
+                        <div class="projects-footer project-card">
+                            <a href="https://github.com/Itz-fork" class="see-more-btn" target="_blank" rel="noopener">
+                                See more on GitHub →
+                            </a>
+                        </div>
+
+                    </div>
+                </section>
+
+                <section id="contact" class="island" tabindex="-1">
+                    <div class="card">
+                        <div class="section-title">Ping me</div>
+
+                        <form id="contact-form" novalidate>
+                            <label>
+                                Email
+                                <input type="email" name="email" required>
+                            </label>
+
+                            <label>
+                                Message
+                                <textarea name="msg" rows="4" required></textarea>
+                            </label>
+
+                            <button type="submit" class="cta">Send</button>
+                            <p id="form-status" aria-live="polite"></p>
+                        </form>
+
+                    </div>
+                </section>
+
+
+            </div>
+        </main>
+
+    </div>
+
+    <footer class="footer">
+        © 2025 Hirusha Himath
+    </footer>
+
+    <!-- App logic -->
+    <script src="main.js"></script>
+</body>
+
+</html>

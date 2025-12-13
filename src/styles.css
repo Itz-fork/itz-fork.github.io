@@ -1,0 +1,450 @@
+/* 
+  Global tokens.
+  Change these and the whole site follows.
+*/
+:root {
+  font-size: 62.5%;
+  --bg: #0b0f12;
+  --panel: #0f1417;
+  --text: #dbe7ef;
+  --muted: #9aa6b2;
+  --accent: #58a6ff;
+  --border: rgba(255, 255, 255, 0.06);
+  --mono: 'JetBrains Mono', monospace;
+  --sans: 'Space Grotesk', system-ui, sans-serif;
+
+  --z-base: 1;
+  --z-nav: 10;
+  --z-overlay: 20;
+  --z-toast: 30;
+
+}
+
+/* Reset the annoying defaults */
+* {
+  box-sizing: border-box
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+}
+
+/* Keyboard users deserve love */
+:focus-visible {
+  outline: 0.2rem solid var(--accent);
+  outline-offset: 0.2rem;
+}
+
+/* App shell */
+.app {
+  display: grid;
+  grid-template-columns: 28rem 1fr;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  background: linear-gradient(180deg, #0c1116, #080b0e);
+  border-right: 0.1rem solid var(--border);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+/* Branding */
+.brand {
+  display: flex;
+  gap: 1.2rem;
+  align-items: center
+}
+
+.avatar {
+  width: 5.6rem;
+  height: 5.6rem;
+  border-radius: 1rem;
+  background: #111820;
+  display: grid;
+  place-items: center;
+  font-family: var(--mono);
+  font-size: 2.2rem;
+  color: var(--accent);
+  overflow: hidden;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+  display: block;
+}
+
+.title {
+  font-size: 1.7rem;
+  font-weight: 700
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  font-family: var(--mono);
+  color: var(--muted)
+}
+
+/* Navigation */
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.nav button {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: none;
+  border: 0.1rem solid var(--border);
+  padding: 0.8rem 1.2rem;
+  border-radius: 0.8rem;
+  color: var(--muted);
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.nav button svg {
+  width: 1.6rem;
+  height: 1.6rem;
+  stroke: currentColor;
+}
+
+.nav button.active {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* Footer */
+.footer {
+  font-family: var(--mono);
+  font-size: 1.1rem;
+  color: var(--muted);
+  opacity: 0.8;
+  padding: 2rem;
+}
+
+/* Desktop footer sticks to sidebar */
+@media only screen and (min-device-width:800px) {
+  .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 28rem;
+    border-right: 0.1rem solid var(--border);
+    background: linear-gradient(180deg, #0c1116, #080b0e);
+  }
+}
+
+/* Mobile footer behaves like a normal human footer */
+@media only screen and (max-device-width:768px) {
+  .footer {
+    position: static;
+    width: 100%;
+    margin-top: 3.2rem;
+    border-top: 0.1rem solid var(--border);
+    text-align: center;
+  }
+}
+
+/* Main area */
+.main {
+  background: var(--bg);
+  overflow: hidden
+}
+
+.islands {
+  position: relative;
+  height: 100%
+}
+
+.island {
+  position: absolute;
+  inset: 0;
+  padding: 3.2rem;
+  overflow-y: auto;
+  opacity: 0;
+  transform: translateY(1rem);
+  pointer-events: none;
+}
+
+.island.active {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+/* Cards */
+.card {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent);
+  border: 0.1rem solid var(--border);
+  border-radius: 1.2rem;
+  padding: 2rem;
+  margin-bottom: 3.2rem;
+}
+
+.card h4 {
+  margin: 0 0 0.4rem 0;
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.section-title {
+  font-family: var(--mono);
+  font-size: 1.5rem;
+  color: var(--muted);
+  margin-bottom: 1.6rem;
+}
+
+/* Terminal */
+.terminal {
+  font-family: var(--mono);
+  font-size: 1.4rem
+}
+
+.term-head {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 1.2rem
+}
+
+.dot {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%
+}
+
+.red {
+  background: #ff6b6b
+}
+
+.yellow {
+  background: #ffcc66
+}
+
+.green {
+  background: #2dd4bf
+}
+
+.term-lines {
+  white-space: pre-wrap;
+  color: var(--muted)
+}
+
+/* Badges */
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem
+}
+
+.badge {
+  font-family: var(--mono);
+  font-size: 1.2rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 0.6rem;
+  border: 0.1rem solid var(--border);
+}
+
+/* Skill groups */
+.skill-group {
+  margin-bottom: 2rem;
+}
+
+.skill-group:last-child {
+  margin-bottom: 0;
+}
+
+.skill-label {
+  font-family: var(--mono);
+  font-size: 1.2rem;
+  color: var(--muted);
+  margin-bottom: 0.6rem;
+}
+
+/* Projects */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
+  gap: 1.6rem;
+}
+
+/* Project card helper (for bottom-right actions) */
+.project-card {
+  position: relative;
+  padding-bottom: 4.4rem;
+  /* space for the button */
+}
+
+/* Generic subtle action button (reusable) */
+.see-more-btn {
+  font-family: var(--mono);
+  font-size: 1.2rem;
+  color: var(--muted);
+  text-decoration: none;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.6rem;
+  border: 0.1rem dashed var(--border);
+  background: none;
+
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.15s ease;
+}
+
+.see-more-btn:hover,
+.see-more-btn:focus-visible {
+  color: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-0.1rem);
+}
+
+/* Bottom-right placement inside project cards */
+.project-card .see-more-btn {
+  position: absolute;
+  right: 1.6rem;
+  bottom: 1.6rem;
+  font-size: 1.1rem;
+}
+
+/* Forms */
+label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 1.2rem;
+  color: var(--muted);
+  margin-top: 1.6rem;
+}
+
+input,
+textarea {
+  width: 100%;
+  margin-top: 0.4rem;
+  padding: 0.8rem;
+  background: transparent;
+  border: 0.1rem solid var(--border);
+  border-radius: 0.6rem;
+  color: var(--text);
+  font-family: inherit;
+}
+
+textarea {
+  resize: none;
+  overflow: hidden;
+  min-height: 6.4rem;
+}
+
+button.cta {
+  margin-top: 2rem;
+  padding: 0.8rem 1.6rem;
+  background: none;
+  border: 0.1rem solid var(--accent);
+  border-radius: 0.8rem;
+  color: var(--accent);
+  cursor: pointer;
+}
+
+/* Mobile layout */
+@media only screen and (max-device-width:768px) {
+  .app {
+    grid-template-columns: 1fr
+  }
+
+  body {
+    overflow: auto
+  }
+
+  .main {
+    overflow: visible;
+    padding-top: 14rem;
+  }
+
+  .islands,
+  .island {
+    position: static;
+    height: auto;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    padding: 2rem;
+    scroll-margin-top: 14rem;
+  }
+
+  .nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .nav button {
+    padding: 0.4rem 0.8rem;
+    font-size: 1.2rem;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: var(--z-nav);
+  }
+
+}
+
+/* Desktop app behavior */
+@media only screen and (min-device-width:800px) {
+
+  html,
+  body {
+    height: 100%
+  }
+
+  body {
+    overflow: hidden
+  }
+
+  .app {
+    height: 100vh
+  }
+
+  .sidebar,
+  .main,
+  .islands,
+  .island {
+    height: 100%
+  }
+}
+
+/* Motion (only if user is okay with it) */
+@media (prefers-reduced-motion:no-preference) {
+  @media only screen and (min-device-width:800px) {
+    .island {
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+  }
+}
