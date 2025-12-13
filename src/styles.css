@@ -17,12 +17,11 @@
   --z-nav: 10;
   --z-overlay: 20;
   --z-toast: 30;
-
 }
 
 /* Reset the annoying defaults */
 * {
-  box-sizing: border-box
+  box-sizing: border-box;
 }
 
 html,
@@ -41,7 +40,6 @@ body {
 }
 
 /* Custom cursor — integrated with design system */
-
 body,
 a,
 button,
@@ -54,18 +52,13 @@ textarea {
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  
   background: var(--accent);
-  box-shadow:
-    0 0 0 6px rgba(88, 166, 255, 0.12);
-
+  box-shadow: 0 0 0 6px rgba(88, 166, 255, 0.12);
   position: fixed;
   pointer-events: none;
   z-index: 9999;
-
   transform: translate(-50%, -50%);
   opacity: 0.85;
-
   transition:
     transform 0.12s ease-out,
     box-shadow 0.2s ease,
@@ -74,10 +67,8 @@ textarea {
 
 .custom-cursor.hover {
   background: transparent;
-
   width: 28px;
   height: 28px;
-
   box-shadow:
     0 0 0 1px var(--accent),
     0 0 0 6px rgba(88, 166, 255, 0.15);
@@ -87,7 +78,6 @@ textarea {
   opacity: 0;
   transform: translate(-50%, -50%) scale(0.7);
 }
-
 
 /* Keyboard users deserve love */
 :focus-visible {
@@ -116,7 +106,7 @@ textarea {
 .brand {
   display: flex;
   gap: 1.2rem;
-  align-items: center
+  align-items: center;
 }
 
 .avatar {
@@ -142,13 +132,13 @@ textarea {
 
 .title {
   font-size: 1.7rem;
-  font-weight: 700
+  font-weight: 700;
 }
 
 .subtitle {
   font-size: 1.2rem;
   font-family: var(--mono);
-  color: var(--muted)
+  color: var(--muted);
 }
 
 /* Navigation */
@@ -217,12 +207,12 @@ textarea {
 /* Main area */
 .main {
   background: var(--bg);
-  overflow: hidden
+  overflow: hidden;
 }
 
 .islands {
   position: relative;
-  height: 100%
+  height: 100%;
 }
 
 .island {
@@ -265,45 +255,97 @@ textarea {
 }
 
 /* Terminal */
-.terminal {
+
+.card.terminal {
+  position: relative;
   font-family: var(--mono);
-  font-size: 1.4rem
+  font-size: 1.4rem;
 }
 
 .term-head {
+  position: relative;
+  height: 2.4rem;
+  margin-bottom: 1.2rem;
+}
+
+.term-dots {
+  position: absolute;
+  top: 0;
+  left: 0;
   display: flex;
   gap: 0.6rem;
-  margin-bottom: 1.2rem
 }
 
 .dot {
   width: 1rem;
   height: 1rem;
-  border-radius: 50%
+  border-radius: 50%;
 }
 
 .red {
-  background: #ff6b6b
+  background: #ff6b6b;
 }
-
 .yellow {
-  background: #ffcc66
+  background: #ffcc66;
+}
+.green {
+  background: #2dd4bf;
 }
 
-.green {
-  background: #2dd4bf
+.term-replay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: none;
+  border: 0.1rem dashed var(--border);
+  border-radius: 0.6rem;
+  padding: 0.3rem 0.6rem;
+  font-family: var(--mono);
+  font-size: 1.2rem;
+  color: var(--muted);
+  z-index: 5;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.15s ease;
+}
+
+.term-replay svg {
+  width: 1.4rem;
+  height: 1.4rem;
+}
+
+.term-replay:hover,
+.term-replay:focus-visible {
+  color: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-0.1rem);
 }
 
 .term-lines {
   white-space: pre-wrap;
-  color: var(--muted)
+  color: var(--muted);
+}
+
+/* Mobile: replay icon only */
+@media only screen and (max-device-width:768px) {
+  .term-replay .replay-text {
+    display: none;
+  }
+
+  .term-replay {
+    padding: 0.35rem;
+  }
 }
 
 /* Badges */
 .badges {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6rem
+  gap: 0.6rem;
 }
 
 .badge {
@@ -337,29 +379,24 @@ textarea {
   gap: 1.6rem;
 }
 
-/* Project card helper (for bottom-right actions) */
+/* Project card helper */
 .project-card {
   position: relative;
   padding-bottom: 4.4rem;
-  /* space for the button */
 }
 
-/* Generic subtle action button (reusable) */
 .see-more-btn {
   font-family: var(--mono);
   font-size: 1.2rem;
   color: var(--muted);
   text-decoration: none;
-
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-
   padding: 0.4rem 0.8rem;
   border-radius: 0.6rem;
   border: 0.1rem dashed var(--border);
   background: none;
-
   transition:
     color 0.2s ease,
     border-color 0.2s ease,
@@ -373,7 +410,6 @@ textarea {
   transform: translateY(-0.1rem);
 }
 
-/* Bottom-right placement inside project cards */
 .project-card .see-more-btn {
   position: absolute;
   right: 1.6rem;
@@ -427,11 +463,11 @@ button.cta {
 /* Mobile layout */
 @media only screen and (max-device-width:768px) {
   .app {
-    grid-template-columns: 1fr
+    grid-template-columns: 1fr;
   }
 
   body {
-    overflow: auto
+    overflow: auto;
   }
 
   .main {
@@ -468,7 +504,6 @@ button.cta {
     right: 0;
     z-index: var(--z-nav);
   }
-
 }
 
 /* Desktop app behavior */
@@ -476,26 +511,26 @@ button.cta {
 
   html,
   body {
-    height: 100%
+    height: 100%;
   }
 
   body {
-    overflow: hidden
+    overflow: hidden;
   }
 
   .app {
-    height: 100vh
+    height: 100vh;
   }
 
   .sidebar,
   .main,
   .islands,
   .island {
-    height: 100%
+    height: 100%;
   }
 }
 
-/* Motion (only if user is okay with it) */
+/* Motion */
 @media (prefers-reduced-motion:no-preference) {
   @media only screen and (min-device-width:800px) {
     .island {

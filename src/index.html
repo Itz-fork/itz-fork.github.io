@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>Hirusha — Backend & Automation</title>
+    <title>Hirusha Himath — Backend & Automation developer</title>
 
     <!-- Favicons -->
     <link rel="icon" href="content/favicons/favicon.ico" sizes="any">
@@ -84,14 +84,29 @@
 
                 <section id="terminal" class="island active" tabindex="-1">
                     <div class="card terminal">
+
                         <div class="term-head">
-                            <span class="dot red"></span>
-                            <span class="dot yellow"></span>
-                            <span class="dot green"></span>
+                            <div class="term-dots">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                            </div>
+
+                            <button class="term-replay" aria-label="Replay terminal">
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M3 12a9 9 0 1 0 3-6.7" fill="none" stroke="currentColor"
+                                        stroke-width="2" />
+                                    <path d="M3 4v5h5" fill="none" stroke="currentColor" stroke-width="2" />
+                                </svg>
+                                <span class="replay-text">Replay</span>
+                            </button>
                         </div>
+
                         <div id="term" class="term-lines" aria-live="polite"></div>
+
                     </div>
                 </section>
+
 
                 <section id="skills" class="island" tabindex="-1">
                     <div class="card">

@@ -1,5 +1,4 @@
 // Navigation logic.
-// Simple, predictable, no framework drama.
 
 const buttons = document.querySelectorAll('.nav button');
 const islands = document.querySelectorAll('.island');
@@ -58,28 +57,23 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// Fake terminal boot sequence (pure vibes)
+// Fake terminal boot sequence
 const term = document.getElementById('term');
+const replayBtn = document.querySelector('.term-replay');
+
 const terminalLines = [
-  // boot
   'Booting runtime...',
   'Loading config... OK',
   'Connecting to database... OK',
   'Starting worker pool... OK',
   '',
-
-  // request
   'GET /about HTTP/1.1',
   'Host: hirusha.dev',
   '',
-
-  // response
   'HTTP/1.1 200 OK',
   'Content-Type: application/json',
   'Cache-Control: no-store',
   '',
-
-  // body
   '{',
   '  "name": "Hirusha Himath",',
   '  "role": "Backend & Automation Engineer",',
@@ -94,23 +88,33 @@ const terminalLines = [
   '}'
 ];
 
-let termBuffer = '';
+let termBuffer;
 let lineIndex = 0;
 
-const termInterval = setInterval(() => {
-  if (lineIndex >= terminalLines.length) {
-    clearInterval(termInterval);
-    return;
-  }
+function playTerminal() {
+  clearInterval(termBuffer);
+  term.textContent = '';
+  lineIndex = 0;
 
-  termBuffer += terminalLines[lineIndex] + '\n';
-  term.textContent = termBuffer;
-  lineIndex++;
-}, 180);
+  termBuffer = setInterval(() => {
+    if (lineIndex >= terminalLines.length) {
+      clearInterval(termBuffer);
+      return;
+    }
+
+    term.textContent += terminalLines[lineIndex] + '\n';
+    lineIndex++;
+  }, 180);
+}
+
+// Initial run
+playTerminal();
+
+// Replay handler
+replayBtn?.addEventListener('click', playTerminal);
 
 
 // Auto-grow textarea in contact form.
-// Nobody likes fighting scrollbars in a textarea.
 const messageTextarea = document.querySelector('#contact textarea');
 
 if (messageTextarea) {
@@ -166,8 +170,6 @@ if (form) {
       return;
     }
 
-
-
     const payload = {
       name: 'Portfolio Contact',
       email,
@@ -206,7 +208,7 @@ if (form) {
   });
 }
 
-// Utilities
+// Email validation
 function isValidEmail(email) {
   const EMAIL_REGEX =
     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$/;
@@ -214,6 +216,7 @@ function isValidEmail(email) {
   return email.length <= 254 && EMAIL_REGEX.test(email);
 }
 
+// Status message handler
 function setStatus(message, isError = false) {
   statusEl.textContent = message;
   statusEl.style.color = isError ? '#ff6b6b' : '#2dd4bf';
