@@ -182,7 +182,7 @@ if (form) {
     form.setAttribute('aria-busy', 'true');
 
     try {
-      const res = await fetch('https://your-worker.your-name.workers.dev/', {
+      const res = await fetch('https://contact.git-itzfork.workers.dev', {
         method: 'POST',
         headers: {
           'content-type': 'application/json'
