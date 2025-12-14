@@ -69,15 +69,6 @@ html {
   font-size: var(--font-size-base);
 }
 
-html,
-body {
-  margin: 0;
-  padding: 0;
-  inline-size: 100%;
-  max-inline-size: 100%;
-  overflow-x: hidden;
-}
-
 body {
   background: var(--color-bg);
   color: var(--color-text);
@@ -86,6 +77,26 @@ body {
   /* Reset from 62.5% */
   line-height: 1.5;
 }
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  inline-size: 100%;
+  max-inline-size: 100%;
+  overflow-x: hidden;
+
+  /* hide scroll bar */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+
 
 /* ============================================================================
    CUSTOM CURSOR
@@ -311,11 +322,19 @@ textarea {
   transform: translateY(1rem);
   pointer-events: none;
 
+  /* hide scroll bar */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
   &.active {
     opacity: 1;
     transform: none;
     pointer-events: auto;
   }
+}
+
+.island::-webkit-scrollbar {
+  display: none;
 }
 
 /* ============================================================================
