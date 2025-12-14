@@ -44,27 +44,44 @@ document.addEventListener('DOMContentLoaded', () => {
   const cursor = document.querySelector('.custom-cursor');
   if (!cursor) return;
 
+  let mouseX = 0, mouseY = 0;
+  let rafId = null;
+
   document.addEventListener('mousemove', (e) => {
-    if (!cachedIsDesktop) {
-      cursor.classList.add('hide');
-      return;
-    }
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
+    if (!cachedIsDesktop) return;
+
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+
+    if (rafId) return;
+
+    rafId = requestAnimationFrame(() => {
+      cursor.style.transform =
+        `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+      rafId = null;
+    });
   });
+
 
   document.body.addEventListener('mouseleave', () => cursor.classList.add('hide'));
   document.body.addEventListener('mouseenter', () => cursor.classList.remove('hide'));
 
   document.body.addEventListener('mouseover', (e) => {
     const el = e.target.closest('a, button, input[type="submit"], [data-cursor-hover]');
-    if (el && isDesktop()) cursor.classList.add('hover');
+    if (el && cachedIsDesktop) cursor.classList.add('hover');
   });
 
   document.body.addEventListener('mouseout', (e) => {
-    const el = e.target.closest('a, button, input[type="submit"], [data-cursor-hover]');
+    if (!cachedIsDesktop) return;
+
+    if (e.relatedTarget && e.target.contains(e.relatedTarget)) return;
+
+    const el = e.target.closest(
+      'a, button, input[type="submit"], [data-cursor-hover]'
+    );
     if (el) cursor.classList.remove('hover');
   });
+
 });
 
 // Fake terminal boot
@@ -98,23 +115,21 @@ const terminalLines = [
   '}'
 ];
 
-let termBuffer;
+let lineIndex = 0;
 
 function playTerminal() {
-  if (termBuffer) clearInterval(termBuffer);
   term.textContent = '';
   lineIndex = 0;
 
-  termBuffer = setInterval(() => {
-    if (lineIndex >= terminalLines.length) {
-      clearInterval(termBuffer);
-      termBuffer = null;
-      return;
-    }
-    term.textContent += terminalLines[lineIndex] + '\n';
-    lineIndex++;
-  }, 180);
+  function step() {
+    if (lineIndex >= terminalLines.length) return;
+    term.textContent += terminalLines[lineIndex++] + '\n';
+    setTimeout(step, 180);
+  }
+
+  step();
 }
+
 
 // Initial run
 playTerminal();

@@ -120,6 +120,10 @@ textarea {
   pointer-events: none;
   z-index: var(--z-cursor);
   transform: translate(-50%, -50%);
+
+  inset: 0;
+  will-change: transform;
+
   opacity: 0.85;
   transition:
     transform var(--transition-fast),
