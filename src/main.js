@@ -59,12 +59,12 @@ document.addEventListener('DOMContentLoaded', () => {
   document.body.addEventListener('mouseover', (e) => {
     const el = e.target.closest('a, button, input[type="submit"], [data-cursor-hover]');
     if (el && isDesktop()) cursor.classList.add('hover');
-  }, true);
+  });
 
   document.body.addEventListener('mouseout', (e) => {
     const el = e.target.closest('a, button, input[type="submit"], [data-cursor-hover]');
     if (el) cursor.classList.remove('hover');
-  }, true);
+  });
 });
 
 // Fake terminal boot
