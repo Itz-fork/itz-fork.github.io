@@ -56,12 +56,12 @@ document.addEventListener('DOMContentLoaded', () => {
   document.body.addEventListener('mouseleave', () => cursor.classList.add('hide'));
   document.body.addEventListener('mouseenter', () => cursor.classList.remove('hide'));
 
-  document.body.addEventListener('mouseenter', (e) => {
+  document.body.addEventListener('mouseover', (e) => {
     const el = e.target.closest('a, button, input[type="submit"], [data-cursor-hover]');
     if (el && isDesktop()) cursor.classList.add('hover');
   }, true);
 
-  document.body.addEventListener('mouseleave', (e) => {
+  document.body.addEventListener('mouseout', (e) => {
     const el = e.target.closest('a, button, input[type="submit"], [data-cursor-hover]');
     if (el) cursor.classList.remove('hover');
   }, true);
