@@ -3,9 +3,15 @@
 const buttons = document.querySelectorAll('.nav button');
 const islands = document.querySelectorAll('.island');
 
+
+// Detect if device is desktop
 function isDesktop() {
   return window.matchMedia('only screen and (min-device-width: 800px)').matches;
 }
+let cachedIsDesktop = isDesktop();
+window.addEventListener('resize', () => {
+  cachedIsDesktop = isDesktop();
+});
 
 buttons.forEach(btn => {
   btn.addEventListener('click', () => {
@@ -22,7 +28,7 @@ buttons.forEach(btn => {
     btn.setAttribute('aria-current', 'page');
 
     // Desktop = app-style swap
-    if (isDesktop()) {
+    if (cachedIsDesktop) {
       islands.forEach(i => i.classList.toggle('active', i === target));
       target.focus({ preventScroll: true });
     }
@@ -39,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!cursor) return;
 
   document.addEventListener('mousemove', (e) => {
-    if (!isDesktop()) {
+    if (!cachedIsDesktop) {
       cursor.classList.add('hide');
       return;
     }
@@ -50,14 +56,18 @@ document.addEventListener('DOMContentLoaded', () => {
   document.body.addEventListener('mouseleave', () => cursor.classList.add('hide'));
   document.body.addEventListener('mouseenter', () => cursor.classList.remove('hide'));
 
-  const interactiveElements = document.querySelectorAll('a, button, input[type="submit"], [data-cursor-hover]');
-  interactiveElements.forEach(el => {
-    el.addEventListener('mouseenter', () => { if (isDesktop()) cursor.classList.add('hover'); });
-    el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-  });
+  document.body.addEventListener('mouseenter', (e) => {
+    const el = e.target.closest('a, button, input[type="submit"], [data-cursor-hover]');
+    if (el && isDesktop()) cursor.classList.add('hover');
+  }, true);
+
+  document.body.addEventListener('mouseleave', (e) => {
+    const el = e.target.closest('a, button, input[type="submit"], [data-cursor-hover]');
+    if (el) cursor.classList.remove('hover');
+  }, true);
 });
 
-// Fake terminal boot sequence
+// Fake terminal boot
 const term = document.getElementById('term');
 const replayBtn = document.querySelector('.term-replay');
 
@@ -89,19 +99,18 @@ const terminalLines = [
 ];
 
 let termBuffer;
-let lineIndex = 0;
 
 function playTerminal() {
-  clearInterval(termBuffer);
+  if (termBuffer) clearInterval(termBuffer);
   term.textContent = '';
   lineIndex = 0;
 
   termBuffer = setInterval(() => {
     if (lineIndex >= terminalLines.length) {
       clearInterval(termBuffer);
+      termBuffer = null;
       return;
     }
-
     term.textContent += terminalLines[lineIndex] + '\n';
     lineIndex++;
   }, 180);
@@ -130,12 +139,11 @@ if (messageTextarea) {
 // Contact form submission logic
 const form = document.getElementById('contact-form');
 const statusEl = document.getElementById('form-status');
-const submitBtn = form?.querySelector('button[type="submit"]');
 
 if (form) {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-
+    const submitBtn = form?.querySelector('button[type="submit"]');
     const email = form.email.value.trim();
     const msg = form.msg.value.trim();
 
